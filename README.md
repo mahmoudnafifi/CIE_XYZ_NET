@@ -2,7 +2,7 @@
 *[Mahmoud Afifi](https://sites.google.com/view/mafifi)*, *[Abdelrahman Abdelhamed](https://www.eecs.yorku.ca/~kamel/)*, *[Abdullah Abuolaim](https://sites.google.com/view/abdullah-abuolaim/)*, *[Abhijith Punnappurath](https://abhijithpunnappurath.github.io/)*, and  *[Michael S. Brown](http://www.cse.yorku.ca/~mbrown/)*
 <br></br>York University
 
-Reference code for the paper [CIE XYZ Net: Unprocessing Images for Low-Level Computer Vision Tasks](). Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith Punnappurath, and Michael S. Brown, arXiv preprint, 2020. If you use this code or our dataset, please cite our paper:
+Reference code for the paper [CIE XYZ Net: Unprocessing Images for Low-Level Computer Vision Tasks](https://arxiv.org/pdf/2006.12709.pdf). Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith Punnappurath, and Michael S. Brown, arXiv preprint, 2020. If you use this code or our dataset, please cite our paper:
 ```
 @article{CIEXYZNet,
   title={CIE XYZ Net: Unprocessing Images for Low-Level Computer Vision Tasks},
