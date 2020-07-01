@@ -57,7 +57,6 @@ Soon!
 #### Prerequisite
 1. Matlab 2019b or higher 
 2. Deep Learning Toolbox
-3. Image Processing Toolbox
 
 #### Get Started
 Run `install_.m`. 
