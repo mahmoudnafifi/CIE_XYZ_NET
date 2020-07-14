@@ -93,31 +93,31 @@ if __name__ == "__main__":
         logging.info(f'Processing image {filename}')
 
         in_img_tensor = utils.from_image_to_tensor(in_img).to(device=device, dtype=torch.float32)
+        with torch.no_grad():
+            local_to_xyz = ciexyzNet.forward_local(in_img_tensor, 'xyz')
 
-        local_to_xyz = ciexyzNet.forward_local(in_img_tensor, 'xyz')
+            if tasks[0] != 'none':
+                local_to_xyz = pp.postprocessing(local_to_xyz, tasks[0]).to(device=device, dtype=torch.float32)
 
-        if tasks[0] != 'none':
-            local_to_xyz = pp.postprocessing(local_to_xyz, tasks[0]).to(device=device, dtype=torch.float32)
+            unprocessed_l = in_img_tensor - local_to_xyz
 
-        unprocessed_l = in_img_tensor - local_to_xyz
+            if tasks[1] != 'none':
+                unprocessed_l = pp.postprocessing(unprocessed_l, tasks[1]).to(device=device, dtype=torch.float32)
 
-        if tasks[1] != 'none':
-            unprocessed_l = pp.postprocessing(unprocessed_l, tasks[1]).to(device=device, dtype=torch.float32)
+            xyz = ciexyzNet.forward_global(unprocessed_l, target='xyz')
 
-        xyz = ciexyzNet.forward_global(unprocessed_l, target='xyz')
+            if tasks[2] != 'none':
+                xyz = pp.postprocessing(xyz, tasks[2]).to(device=device, dtype=torch.float32)
 
-        if tasks[2] != 'none':
-            xyz = pp.postprocessing(xyz, tasks[2]).to(device=device, dtype=torch.float32)
+            srgb = ciexyzNet.forward_global(xyz, target='srgb')
 
-        srgb = ciexyzNet.forward_global(xyz, target='srgb')
+            if tasks[3] != 'none':
+                srgb = pp.postprocessing(srgb, tasks[3]).to(device=device, dtype=torch.float32)
 
-        if tasks[3] != 'none':
-            srgb = pp.postprocessing(srgb, tasks[3]).to(device=device, dtype=torch.float32)
+            local_t_srgb = ciexyzNet.forward_local(srgb, target='srgb')
 
-        local_t_srgb = ciexyzNet.forward_local(srgb, target='srgb')
-
-        if tasks[4] != 'none':
-            local_t_srgb = pp.postprocessing(local_t_srgb, tasks[4]).to(device=device, dtype=torch.float32)
+            if tasks[4] != 'none':
+                local_t_srgb = pp.postprocessing(local_t_srgb, tasks[4]).to(device=device, dtype=torch.float32)
 
         result = utils.outOfGamutClipping(utils.from_tensor_to_image(srgb + local_t_srgb))
 

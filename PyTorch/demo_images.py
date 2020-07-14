@@ -92,7 +92,8 @@ if __name__ == "__main__":
         in_img_tensor = utils.from_image_to_tensor(in_img).to(device=device, dtype=torch.float32)
 
         if task.lower() == 'srgb-2-xyz-2-srgb':
-            output_XYZ, output_sRGB = ciexyzNet(in_img_tensor)
+            with torch.no_grad():
+                output_XYZ, output_sRGB = ciexyzNet(in_img_tensor)
             output_XYZ = utils.from_tensor_to_image(output_XYZ, device=device)
             output_sRGB = utils.from_tensor_to_image(output_sRGB, device=device)
             output_XYZ = utils.outOfGamutClipping(output_XYZ)
@@ -113,7 +114,8 @@ if __name__ == "__main__":
                 cv2.imwrite(outsrgb_name, output_sRGB.astype(np.uint8))
 
         elif task.lower() == 'srgb-2-xyz':
-            output_XYZ = ciexyzNet.forward_srgb2xyz(in_img_tensor)
+            with torch.no_grad():
+                output_XYZ = ciexyzNet.forward_srgb2xyz(in_img_tensor)
             output_XYZ = utils.from_tensor_to_image(output_XYZ, device=device)
             output_XYZ = utils.outOfGamutClipping(output_XYZ)
 
@@ -129,7 +131,8 @@ if __name__ == "__main__":
                 cv2.imwrite(outxyz_name, output_XYZ.astype(np.uint16))
 
         else:
-            output_sRGB = ciexyzNet.forward_xyz2srgb(in_img_tensor)
+            with torch.no_grad():
+                output_sRGB = ciexyzNet.forward_xyz2srgb(in_img_tensor)
             output_sRGB = utils.from_tensor_to_image(output_sRGB, device=device)
             output_sRGB = utils.outOfGamutClipping(output_sRGB)
 
