@@ -1,4 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Released under the MIT License.
 % If you use this code, please cite the following paper:
 % Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith 
 % Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for 
@@ -25,7 +26,9 @@ task = 'srgb-2-xyz-2-srgb'; %'srgb-2-xyz-2-srgb', 'srgb-2-xyz', 'xyz-2-srgb'
 
 if strcmpi(task,'srgb-2-xyz-2-srgb') == 0 && ...
         strcmpi(task,'srgb-2-xyz') == 0 && strcmpi(task, 'xyz-2-srgb') == 0
-    error("The task should be one of the following: 'srgb-2-xyz-2-srgb', 'srgb-2-xyz', or 'xyz-2-srgb', but the given one is %s", task);
+    error(...
+        "The task should be: 'srgb-2-xyz-2-srgb', 'srgb-2-xyz', or 'xyz-2-srgb', but the given one is %s", ...
+        task);
 end
 
 switch task
@@ -70,8 +73,8 @@ for i = 1 : length(filenames)
             output_sRGB = applyGlobalMapping(nets.global_XYZ, ...
                 output_XYZ, device);
             
-            output_sRGB = applyLocalMapping(nets.local_XYZ, output_sRGB, ...
-                'to-srgb', device);
+            output_sRGB = applyLocalMapping(nets.local_XYZ, ...
+                output_sRGB, 'to-srgb', device);
             
             output_sRGB(output_sRGB>1) = 1;
             
@@ -99,8 +102,8 @@ for i = 1 : length(filenames)
             output_sRGB = applyGlobalMapping(nets.global_XYZ, ...
                 image, device);
             
-            output_sRGB = applyLocalMapping(nets.local_XYZ, output_sRGB, ...
-                'to-srgb', device);
+            output_sRGB = applyLocalMapping(nets.local_XYZ, ...
+                output_sRGB, 'to-srgb', device);
             
             output_sRGB(output_sRGB>1) = 1;
             

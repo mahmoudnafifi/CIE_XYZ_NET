@@ -1,7 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Released under the MIT License.
 % If you use this code, please cite the following paper:
-% Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith 
-% Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for 
+% Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith
+% Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for
 % Low-Level Computer Vision Tasks. arXiv preprint, 2020.
 %
 % Author: Mahmoud Afifi | Email: mafifi@eecs.yorku.ca, m.3afifi@gmail.com
@@ -15,7 +16,6 @@ classdef resizeLayer_ < nnet.layer.Layer
     
     methods
         function layer = resizeLayer_(name, target_size)
-            
             layer.Name = name;
             layer.Description = "Image resizing";
             layer.target_size = target_size;
@@ -34,27 +34,25 @@ classdef resizeLayer_ < nnet.layer.Layer
                 Z = X;
             else
                 L = length(X(:))/(sz(1) * sz(2) * sz(3));
-            sz
-            L
-             
-             
                 if L == 1
-                       Z = zeros(layer.target_size, layer.target_size, sz(3), ...
-                    'like',X);
-                    temp = avgpool(X,[poolsize_d1, poolsize_d2],...
+                    Z = zeros(layer.target_size, layer.target_size, ...
+                        sz(3), 'like',X);
+                    temp = avgpool(X,[poolsize_d1, poolsize_d2], ...
                         'Stride', [poolsize_d1, poolsize_d2],...
                         'DataFormat','SSCB');
                     Z = temp(1:layer.target_size,1:layer.target_size,:);
                     size(Z)
                 else
-                       Z = zeros(layer.target_size, layer.target_size, sz(3), ...
-                    sz(4), 'like',X);
+                    Z = zeros(layer.target_size, layer.target_size, ...
+                        sz(3), sz(4), 'like', X);
                     for i = 1: L
-                        temp = avgpool(X(:,:,:,i),[poolsize_d1, poolsize_d2],...
+                        temp = avgpool(X(:,:,:,i),...
+                            [poolsize_d1, poolsize_d2],...
                             'Stride', [poolsize_d1, poolsize_d2],...
                             'DataFormat','SSCB');
                         Z(:,:,:,i) = ...
-                            temp(1:layer.target_size,1:layer.target_size,:,i);
+                            temp(1:layer.target_size, ...
+                            1:layer.target_size,:,i);
                     end
                 end
             end

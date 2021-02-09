@@ -1,7 +1,11 @@
 """
+ Copyright 2020 Mahmoud Afifi.
+ Released under the MIT License.
  If you use this code, please cite the following paper:
- Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith Punnappurath, and Michael S Brown.
- CIE XYZ Net: Unprocessing Images for Low-Level Computer Vision Tasks. arXiv preprint, 2020.
+ Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith
+ Punnappurath, and Michael S Brown.
+ CIE XYZ Net: Unprocessing Images for Low-Level Computer Vision Tasks.
+ arXiv preprint, 2020.
 """
 
 __author__ = "Mahmoud Afifi"
@@ -20,7 +24,8 @@ def outOfGamutClipping(I):
 
 
 def compute_loss(input, target_xyz, rec_xyz, rendered):
-    loss = torch.sum(torch.abs(input - rendered) + (1.5 * torch.abs(target_xyz - rec_xyz)))/input.size(0)
+    loss = torch.sum(torch.abs(input - rendered) + (
+        1.5 * torch.abs(target_xyz - rec_xyz)))/input.size(0)
     return loss
 
 def from_tensor_to_image(tensor, device='cuda'):
@@ -39,7 +44,8 @@ def from_image_to_tensor(image):
     image = from_bgr2rgb(image)
     image = im2double(image)  # convert to double
     image = np.array(image)
-    assert len(image.shape) == 3, 'Input image should be 3 channels colored images'
+    assert len(image.shape) == 3, ('Input image should be 3 channels colored '
+                                   'images')
     # HWC to CHW
     image = image.transpose((2, 0, 1))
     return torch.unsqueeze(torch.from_numpy(image), dim=0)

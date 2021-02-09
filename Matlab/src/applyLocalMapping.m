@@ -1,4 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Released under the MIT License.
 % If you use this code, please cite the following paper:
 % Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith 
 % Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for 
@@ -28,7 +29,7 @@ switch target
         elseif strcmpi(device,'cpu')
             res = tanh(extractdata(predict(net, dlarray(I,'SSC'))))/4;
         else
-            error("Wrong device value -- it should be either 'gpu' or 'cpu'");
+            error("Wrong device value. It should be: 'gpu' or 'cpu'");
         end
         
         
@@ -43,7 +44,7 @@ switch target
         elseif strcmpi(device,'cpu')
             res = tanh(extractdata(predict(net, dlarray(I,'SSC'))))/4;
         else
-            error("Wrong device value -- it should be either 'gpu' or 'cpu'");
+            error("Wrong device value. It should be: 'gpu' or 'cpu'");
         end
         if strcmp(pp,'none') ~= 1
             res = postprocessing(res,pp, opt);

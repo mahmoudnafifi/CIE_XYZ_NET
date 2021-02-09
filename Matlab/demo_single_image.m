@@ -1,4 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Released under the MIT License.
 % If you use this code, please cite the following paper:
 % Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith 
 % Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for 
@@ -30,7 +31,9 @@ gt_dir = '..\XYZ_testing';
 
 if strcmpi(task,'srgb-2-xyz-2-srgb') == 0 && ...
         strcmpi(task,'srgb-2-xyz') == 0 && strcmpi(task, 'xyz-2-srgb') == 0
-    error("The task should be one of the following: 'srgb-2-xyz-2-srgb', 'srgb-2-xyz', or 'xyz-2-srgb', but the given one is %s", task);
+    error(...
+        "The task should be: 'srgb-2-xyz-2-srgb', 'srgb-2-xyz', or 'xyz-2-srgb', but the given one is %s", ...
+        task);
 end
 
 if save_output == 1
@@ -76,9 +79,11 @@ switch task
         output_XYZ = applyLocalMapping(nets.local_sRGB, image, ...
             'to-xyz', device);
         
-        output_XYZ = applyGlobalMapping(nets.global_sRGB, output_XYZ,device);
+        output_XYZ = applyGlobalMapping(nets.global_sRGB, ...
+            output_XYZ,device);
         
-        output_sRGB = applyGlobalMapping(nets.global_XYZ, output_XYZ,device);
+        output_sRGB = applyGlobalMapping(nets.global_XYZ, ...
+            output_XYZ,device);
         
         output_sRGB = applyLocalMapping(nets.local_XYZ, output_sRGB, ...
             'to-srgb', device);
@@ -96,16 +101,25 @@ switch task
         
         if show == 1
             if noGT == 1
-                subplot(1,4,1);imshow(image);  title('input');
-                subplot(1,4,2);imshow(rgb2xyz(image)); title('standard');
-                subplot(1,4,3);imshow(output_XYZ); title('ours');
-                subplot(1,4,4);imshow(output_sRGB); title('re-rendered sRGB');
+                subplot(1,4,1);imshow(image); 
+                title('input');
+                subplot(1,4,2);imshow(rgb2xyz(image));
+                title('standard');
+                subplot(1,4,3);imshow(output_XYZ); 
+                title('ours');
+                subplot(1,4,4);imshow(output_sRGB);
+                title('re-rendered sRGB');
             else
-                subplot(1,5,1);imshow(image);  title('input');
-                subplot(1,5,2);imshow(rgb2xyz(image)); title('standard');
-                subplot(1,5,3);imshow(output_XYZ); title('ours');
-                subplot(1,5,4);imshow(GT); title('GT');
-                subplot(1,5,5);imshow(output_sRGB); title('re-rendered sRGB');
+                subplot(1,5,1);imshow(image);
+                title('input');
+                subplot(1,5,2);imshow(rgb2xyz(image));
+                title('standard');
+                subplot(1,5,3);imshow(output_XYZ);
+                title('ours');
+                subplot(1,5,4);imshow(GT);
+                title('GT');
+                subplot(1,5,5);imshow(output_sRGB);
+                title('re-rendered sRGB');
                 
             end
             linkaxes

@@ -1,7 +1,11 @@
 """
+ Copyright 2020 Mahmoud Afifi.
+ Released under the MIT License.
  If you use this code, please cite the following paper:
- Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith Punnappurath, and Michael S Brown.
- CIE XYZ Net: Unprocessing Images for Low-Level Computer Vision Tasks. arXiv preprint, 2020.
+ Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith
+ Punnappurath, and Michael S Brown.
+ CIE XYZ Net: Unprocessing Images for Low-Level Computer Vision Tasks.
+ arXiv preprint, 2020.
 """
 
 __author__ = "Mahmoud Afifi"
@@ -24,7 +28,8 @@ class BasicDataset(Dataset):
         self.xyz_dir = xyz_dir
         self.patch_size = patch_size
         logging.info('Loading training images information...')
-        self.imgfiles = [join(imgs_dir, file) for file in listdir(imgs_dir) if not file.startswith('.')]
+        self.imgfiles = [join(imgs_dir, file) for file in listdir(
+            imgs_dir) if not file.startswith('.')]
         logging.info(f'Creating dataset with {len(self.imgfiles)} examples')
 
     def __len__(self):
@@ -40,8 +45,10 @@ class BasicDataset(Dataset):
             img = cv2.resize(img, (int(w * scale), int(h * scale)))
 
         img_nd = np.array(img)
-        assert len(img_nd.shape) == 3, 'Training/validation images should be 3 channels colored images'
-        img_nd = img_nd[patch_coords[1]:patch_coords[1]+patch_size, patch_coords[0]:patch_coords[0]+patch_size, :]
+        assert len(img_nd.shape) == 3, 'Training/validation images ' \
+                                       'should be 3 channels colored images'
+        img_nd = img_nd[patch_coords[1]:patch_coords[1]+patch_size,
+                 patch_coords[0]:patch_coords[0]+patch_size, :]
         # HWC to CHW
         img_trans = img_nd.transpose((2, 0, 1))
         return img_trans
@@ -69,7 +76,10 @@ class BasicDataset(Dataset):
         # get random patch coord
         patch_x = np.random.randint(0, high=w - self.patch_size)
         patch_y = np.random.randint(0, high=h - self.patch_size)
-        in_img_patch = self.preprocess(in_img, self.patch_size, w, h, (patch_x, patch_y), aug_op, scale=scale)
-        xyz_patch = self.preprocess(xyz_img, self.patch_size, w, h, (patch_x, patch_y), aug_op, scale=scale)
+        in_img_patch = self.preprocess(in_img, self.patch_size, w, h, (
+            patch_x, patch_y), aug_op, scale=scale)
+        xyz_patch = self.preprocess(xyz_img, self.patch_size, w, h, (
+            patch_x, patch_y), aug_op, scale=scale)
 
-        return {'image': torch.from_numpy(in_img_patch), 'gt_xyz': torch.from_numpy(xyz_patch)}
+        return {'image': torch.from_numpy(in_img_patch), 'gt_xyz':
+            torch.from_numpy(xyz_patch)}

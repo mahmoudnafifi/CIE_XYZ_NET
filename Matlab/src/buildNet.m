@@ -1,4 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Released under the MIT License.
 % If you use this code, please cite the following paper:
 % Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith 
 % Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for 
@@ -76,8 +77,6 @@ lgraph = connectLayers(lgraph, sRGB_global_mapping_layers(end).Name, ...
 lgraph = connectLayers(lgraph, XYZ_global_mapping_layers(end).Name, ...
     XYZ_local_mapping_layers(1).Name);
 
-
-%lgraph =  addLayers(lgraph, [catLayer, srtLayer, lossLayer]);
 lgraph =  addLayers(lgraph, [catLayer, lossLayer]);
 
 lgraph = connectLayers(lgraph, XYZ_global_mapping_layers(end).Name, ...
@@ -88,7 +87,3 @@ lgraph = connectLayers(lgraph, XYZ_local_mapping_layers(end).Name, ...
 
 lgraph = connectLayers(lgraph, sRGB_global_mapping_layers(end).Name, ...
     [catLayer.Name '/in1']);
-
-%plot(lgraph)
-
-%analyzeNetwork(lgraph)

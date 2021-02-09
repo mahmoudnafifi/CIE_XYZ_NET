@@ -1,4 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Released under the MIT License.
 % If you use this code, please cite the following paper:
 % Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith 
 % Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for 
@@ -10,7 +11,8 @@
 function layers = addGlobalBlock(layers, blockDepth, convDepth, ...
     trgt_img_sz, prefix)
 
-layers = [debugLayer([prefix 'debug']) layers resizeLayer([prefix ' Resizing'],trgt_img_sz)];
+layers = [debugLayer([prefix 'debug']), layers, ...
+    resizeLayer([prefix ' Resizing'],trgt_img_sz)];
 
 for layerNumber = 1 : blockDepth
     

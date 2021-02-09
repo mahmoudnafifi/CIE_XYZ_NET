@@ -1,4 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Released under the MIT License.
 % If you use this code, please cite the following paper:
 % Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith 
 % Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for 
@@ -18,7 +19,5 @@ end
 GTimages = zeros([size(sRGB,1),size(sRGB,2),size(sRGB,3) * 2],'like',sRGB);
 GTimages(:,:,1:3) = XYZ;
 GTimages(:,:,4:6) = sRGB;
-
-
 
 end

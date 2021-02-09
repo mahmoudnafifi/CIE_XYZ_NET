@@ -1,4 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Released under the MIT License.
 % If you use this code, please cite the following paper:
 % Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith 
 % Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for 
@@ -7,7 +8,8 @@
 % Author: Mahmoud Afifi | Email: mafifi@eecs.yorku.ca, m.3afifi@gmail.com
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function layers = addLocalBlock(layers, blockDepth, convDepth, sign, prefix)
+function layers = addLocalBlock(layers, blockDepth, convDepth, sign, ...
+    prefix)
 for layerNumber = 1 : blockDepth
     if  layerNumber ~= blockDepth
         convolutionLayer = convolution2dLayer(3,convDepth, ...

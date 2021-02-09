@@ -1,4 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Released under the MIT License.
 % If you use this code, please cite the following paper:
 % Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith 
 % Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for 
@@ -39,7 +40,8 @@ else
             mkdir(fullfile(out_dir,'backup'));
         end
         copyfile(fullfile(out_dir,files(end).name),...
-            fullfile(out_dir,'backup',sprintf('epoch_number_%d.mat',floor(epoch))));
+            fullfile(out_dir,'backup',sprintf('epoch_number_%d.mat', ...
+            floor(epoch))));
     end
     if length(files)>check_point_period
         for i=1:length(files)-5

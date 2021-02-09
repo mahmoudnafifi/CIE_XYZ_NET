@@ -1,4 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Released under the MIT License.
 % If you use this code, please cite the following paper:
 % Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith 
 % Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for 
@@ -15,8 +16,8 @@ if inputSize(3)~=3
     error('Cannot process grayscale images');
 end
 
-inputLayer = imageInputLayer([inputSize(1) inputSize(2) inputSize(3)],'Name',...
-    'Input Layer','Normalization','none'); % no zero normalization
+inputLayer = imageInputLayer([inputSize(1) inputSize(2) inputSize(3)], ...
+    'Name', 'Input Layer','Normalization','none'); % no zero normalization
 
 local_mp_sRGB = 'sRGB Local Mapping';
 local_mp_XYZ = 'XYZ Local Mapping';

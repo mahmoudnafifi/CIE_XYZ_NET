@@ -1,7 +1,11 @@
 """
+ Copyright 2020 Mahmoud Afifi.
+ Released under the MIT License.
  If you use this code, please cite the following paper:
- Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith Punnappurath, and Michael S Brown.
- CIE XYZ Net: Unprocessing Images for Low-Level Computer Vision Tasks. arXiv preprint, 2020.
+ Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith
+ Punnappurath, and Michael S Brown.
+ CIE XYZ Net: Unprocessing Images for Low-Level Computer Vision Tasks.
+ arXiv preprint, 2020.
 """
 
 __author__ = "Mahmoud Afifi"
@@ -16,7 +20,7 @@ import logging
 
 
 def postprocessing(input_img, PP, opt=None):
-    """ Post-processing function -- please adjust it with your custom pp functions"""
+    """ Post-processing function; adjust it with your custom pp functions. """
     logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
     if '+' not in PP:
         PP = [PP]

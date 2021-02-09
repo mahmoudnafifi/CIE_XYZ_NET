@@ -1,7 +1,11 @@
 """
+ Copyright 2020 Mahmoud Afifi.
+ Released under the MIT License.
  If you use this code, please cite the following paper:
- Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith Punnappurath, and Michael S Brown.
- CIE XYZ Net: Unprocessing Images for Low-Level Computer Vision Tasks. arXiv preprint, 2020.
+ Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith
+ Punnappurath, and Michael S Brown.
+ CIE XYZ Net: Unprocessing Images for Low-Level Computer Vision Tasks.
+ arXiv preprint, 2020.
 """
 
 __author__ = "Mahmoud Afifi"
@@ -12,7 +16,8 @@ from .local_net import *
 from .global_net import *
 
 class CIEXYZNet(nn.Module):
-    def __init__(self, device='cuda', localdepth=16, local_convdepth=32, globaldepth=5, global_convdepth=64,
+    def __init__(self, device='cuda', localdepth=16, local_convdepth=32,
+                 globaldepth=5, global_convdepth=64,
                  global_in=128, scale=0.25):
         super(CIEXYZNet, self).__init__()
         self.localdepth = localdepth
@@ -22,12 +27,19 @@ class CIEXYZNet(nn.Module):
         self.global_in = global_in
         self.scale = scale
         self.device = device
-        self.srgb2xyz_local_net = localSubNet(blockDepth=self.localdepth, convDepth=self.local_convdepth, scale=self.scale)
-        self.xyz2srgb_local_net = localSubNet(blockDepth=self.localdepth, convDepth=self.local_convdepth, scale=self.scale)
-        self.srgb2xyz_globa_net = globalSubNet(blockDepth=self.globaldepth, convDepth=self.global_convdepth,
-                                               in_img_sz=self.global_in, device=self.device)
-        self.xyz2srgb_globa_net = globalSubNet(blockDepth=self.globaldepth, convDepth=self.global_convdepth,
-                                               in_img_sz=self.global_in, device=self.device)
+        self.srgb2xyz_local_net = localSubNet(
+            blockDepth=self.localdepth, convDepth=self.local_convdepth,
+            scale=self.scale)
+        self.xyz2srgb_local_net = localSubNet(
+            blockDepth=self.localdepth, convDepth=self.local_convdepth,
+            scale=self.scale)
+        self.srgb2xyz_globa_net = globalSubNet(
+            blockDepth=self.globaldepth,
+            convDepth=self.global_convdepth, in_img_sz=self.global_in,
+            device=self.device)
+        self.xyz2srgb_globa_net = globalSubNet(
+            blockDepth=self.globaldepth, convDepth=self.global_convdepth,
+            in_img_sz=self.global_in, device=self.device)
 
     def forward_local(self, x, target):
         if target == "xyz":
@@ -35,7 +47,8 @@ class CIEXYZNet(nn.Module):
         elif target == 'srgb':
             localLayer = self.xyz2srgb_local_net(x)
         else:
-            raise Exception("Wrong target. It is expected to be srgb or xyz, but the input target is %s\n" % target)
+            raise Exception("Wrong target. It is expected to be srgb or xyz, "
+                            "but the input target is %s\n" % target)
         return localLayer
 
     def forward_global(self, x, target):
@@ -44,14 +57,16 @@ class CIEXYZNet(nn.Module):
         elif target == "srgb":
             m_v = self.xyz2srgb_globa_net(x)
         else:
-            raise Exception("Wrong target. It is expected to be srgb or xyz, but the input target is %s\n" % target)
+            raise Exception("Wrong target. It is expected to be srgb or xyz, "
+                            "but the input target is %s\n" % target)
         m = torch.reshape(m_v, (x.size(0), 6, 3))
         # multiply
         y = x.clone()
         for i in range(m.size(0)):
-            temp = torch.mm(self.kernel(torch.reshape(torch.squeeze(x[i, :, :, :]), (-1, 3))),
-                            torch.squeeze(m[i, :, :]))
-            y[i, :, :, :] = torch.reshape(temp, (x.size(1), x.size(2), x.size(3)))
+            temp = torch.mm(self.kernel(torch.reshape(torch.squeeze(
+                x[i, :, :, :]), (-1, 3))), torch.squeeze(m[i, :, :]))
+            y[i, :, :, :] = torch.reshape(temp, (x.size(1), x.size(2),
+                                                 x.size(3)))
 
         return y
 

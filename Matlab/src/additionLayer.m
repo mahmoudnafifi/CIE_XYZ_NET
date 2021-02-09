@@ -1,4 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Released under the MIT License.
 % If you use this code, please cite the following paper:
 % Mahmoud Afifi, Abdelrahman Abdelhamed, Abdullah Abuolaim, Abhijith 
 % Punnappurath, and Michael S Brown. CIE XYZ Net: Unprocessing Images for 
@@ -23,8 +24,8 @@ classdef additionLayer < nnet.layer.Layer
         end
         
         function Z = predict(layer, varargin)
-            
-            residuals = tanh(varargin{1})/4;  %limit the range to be from -0.25 to +0.25
+            %limit the range to be from -0.25 to +0.25
+            residuals = tanh(varargin{1})/4;  
             images = varargin{2};
             Z = images + layer.sign * residuals;
         end

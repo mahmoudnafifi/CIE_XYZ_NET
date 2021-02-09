@@ -44,7 +44,7 @@ Reference code for the paper [CIE XYZ Net: Unprocessing Images for Low-Level Com
 2. Run `demo_single_image_with_operators.py` or `demo_images_with_operators.py` to apply an operator(s) to the intermediate layers/images. The operator code should be located in the `pp_code` directory. You should change the code in `pp_code/postprocessing.py` with your operator code. 
 
 #### Training Code:
-Soon!
+Run `train.py` to re-train our network. You will need to adjust the training/validation directories accordingly. 
 
 <br></br>
 
@@ -66,7 +66,7 @@ Run `install_.m`.
 2. Run `demo_single_image_with_operators.m` or `demo_images_with_operators.m` to apply an operator(s) to the intermediate layers/images. The operator code should be located in the `pp_code` directory. You should change the code in `pp_code/postprocessing.m` with your operator code. 
 
 #### Training Code:
-Soon!
+Run `training.m` to re-train our network. You will need to adjust the training/validation directories accordingly. 
 
 
 <br></br>
@@ -76,5 +76,14 @@ Soon!
 ## sRGB2XYZ Dataset
 ![srgb2xyz](https://user-images.githubusercontent.com/37669469/80854947-4eedf280-8c0a-11ea-8ada-e12bea63bdc6.jpg)
 
-Download links will be available soon! 
+Our sRGB2XYZ dataset contains ~1,200 pairs of camera-rendered sRGB and the corresponding scene-referred CIE XYZ images (971 training, 50 validation, and 244 testing images).
+
+Training set (11.1 GB): [Part 0](https://ln2.sync.com/dl/a2894dbb0/sp365wf7-rtd9tujt-kaqqpcpq-mnpph44z) | [Part 1](https://ln2.sync.com/dl/d55a95be0/zg95xg6u-n8nf7kc5-pttv6z8f-n4yu3yny) | [Part 2](https://ln2.sync.com/dl/fb406ca40/j5wmbqdx-knia8qia-cm9yisub-mjcmmbjy) | [Part 3](https://ln2.sync.com/dl/508d5e380/tyhx4efv-ibirjzzu-vid3hjdr-m4j2yxan) | [Part 4](https://ln2.sync.com/dl/e0941e650/hsu3z5dp-fa5ird2b-uiv8tqjy-nfq6cje6) | [Part 5](https://ln2.sync.com/dl/258b02190/9jmarz63-ct33xx4e-x4ikhfwt-guan99b7) 
+
+Validation set (570 MB): [Part 0](https://ln2.sync.com/dl/de4bc8380/xiughx76-cf6xcbp4-vzr73pde-3iyf4spk) 
+
+Testing set (2.83 GB): [Part 0](https://ln2.sync.com/dl/bb19d1b90/nv38zdmq-n4b46kgq-hv7sj472-dfxbzz2u) | [Part 1](https://ln2.sync.com/dl/17f046300/5qcidmk6-rqhqqy57-dwybi55v-f8kz9xku)
+
+### Dataset License:
+As the dataset was originally rendered using raw images taken from the [MIT-Adobe FiveK dataset](https://data.csail.mit.edu/graphics/fivek/), our sRGB2XYZ dataset follows the original license of the [MIT-Adobe FiveK dataset](https://data.csail.mit.edu/graphics/fivek/).
 
