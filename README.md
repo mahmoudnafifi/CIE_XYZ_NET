@@ -91,6 +91,8 @@ As the dataset was originally rendered using raw images taken from the [MIT-Adob
 
 
 ### Related Research Projects
+- Image Enhancement:
+  - [Exposure Correction](https://github.com/mahmoudnafifi/Exposure_Correction): A coarse-to-fine deep learning model with adversarial training to correct badly-exposed photographs (CVPR 2021).
 - sRGB Image White Balancing:
   - [When Color Constancy Goes Wrong](https://github.com/mahmoudnafifi/WB_sRGB): The first work for white-balancing camera-rendered sRGB images (CVPR 2019).
   - [White-Balance Augmenter](https://github.com/mahmoudnafifi/WB_color_augmenter): Emulating white-balance effects for color augmentation; it improves the accuracy of image classification and image semantic segmentation methods (ICCV 2019).
@@ -101,10 +103,8 @@ As the dataset was originally rendered using raw images taken from the [MIT-Adob
   - [APAP Bias Correction](https://github.com/mahmoudnafifi/APAP-bias-correction-for-illumination-estimation-methods): A locally adaptive bias correction technique for illuminant estimation (JOSA A 2019).
   - [SIIE](https://github.com/mahmoudnafifi/SIIE): A sensor-independent deep learning framework for illumination estimation (BMVC 2019).
   - [C5](https://github.com/mahmoudnafifi/C5): A self-calibration method for cross-camera illuminant estimation (arXiv 2020).
-- Image Enhancement:
-  - [Exposure Correction for sRGB Images](https://github.com/mahmoudnafifi/Exposure_Correction): A coarse-to-fine deep learning model with adversarial training to correct badly-exposed photographs (CVPR 2021).
  - Image Manipulation:
-    - [Image Blending](https://github.com/mahmoudnafifi/modified-Poisson-image-editing): Less bleeding artifacts by a simple two-stage Poisson blending approach (CVM 2016).
-    - [Image Recoloring](https://github.com/mahmoudnafifi/Image_recoloring): A fully automated image recoloring without needing for target/reference images (Eurographics 2019).
-    - [Image Relighting](https://github.com/mahmoudnafifi/image_relighting): As an intermediate stage, producing a uniformly-lit white-balanced image could help to eventually produce high-quality relit images (Runner-Up Award overall tracks of AIM 2020 challenge for image relighting, ECCV 2020). 
-    - [HistoGAN](https://github.com/mahmoudnafifi/HistoGAN): Control colors of GAN-generated images based on features derived directly from color histograms (CVPR 2021). 
+    - [MPB](https://github.com/mahmoudnafifi/modified-Poisson-image-editing): Image blending using a two-stage Poisson blending (CVM 2016).
+    - [Image Recoloring](https://github.com/mahmoudnafifi/Image_recoloring): A fully automated image recoloring with no target/reference images (Eurographics 2019).
+    - [Image Relighting](https://github.com/mahmoudnafifi/image_relighting): Relighting using a uniformly-lit white-balanced version of input images (Runner-Up Award overall tracks of AIM 2020 challenge for image relighting, ECCV 2020). 
+    - [HistoGAN](https://github.com/mahmoudnafifi/HistoGAN): Controlling colors of GAN-generated images based on features derived directly from color histograms (CVPR 2021). 
