@@ -46,6 +46,9 @@ Reference code for the paper [CIE XYZ Net: Unprocessing Images for Low-Level Com
 #### Training Code:
 Run `train.py` to re-train our network. You will need to adjust the training/validation directories accordingly. 
 
+#### Note:
+All experiments in the paper were reported using the Matlab version of CIE XYZ Net. The PyTorch code/model is provided to facilitate using our framework with PyTorch, but there is no guarantee that the Torch version gives exactly the same reconstruction/rendering results reported in the paper. 
+
 <br></br>
 
 <!-- Matlab -->
@@ -67,8 +70,6 @@ Run `install_.m`.
 
 #### Training Code:
 Run `training.m` to re-train our network. You will need to adjust the training/validation directories accordingly. 
-
-
 <br></br>
 
 
