@@ -120,4 +120,8 @@ def imshow(img, xyz_out=None, srgb_out=None, task=None):
 
 def im2double(im):
     """ Returns a double image [0,1] of the uint im. """
-    return cv2.normalize(im.astype('float'), None, 0.0, 1.0, cv2.NORM_MINMAX)
+    if im[0].dtype == 'uint8':
+        max_value = 255
+    elif im[0].dtype == 'uint16':
+        max_value = 65535
+    return im.astype('float') / max_value

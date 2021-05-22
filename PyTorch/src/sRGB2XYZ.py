@@ -59,12 +59,12 @@ class CIEXYZNet(nn.Module):
         else:
             raise Exception("Wrong target. It is expected to be srgb or xyz, "
                             "but the input target is %s\n" % target)
-        m = torch.reshape(m_v, (x.size(0), 6, 3))
+        m = torch.reshape(m_v, (x.size(0), 3, 6))
         # multiply
         y = x.clone()
         for i in range(m.size(0)):
-            temp = torch.mm(self.kernel(torch.reshape(torch.squeeze(
-                x[i, :, :, :]), (-1, 3))), torch.squeeze(m[i, :, :]))
+            temp = torch.mm(torch.squeeze(m[i, :, :]), self.kernel(
+                torch.reshape(torch.squeeze(x[i, :, :, :]), (3, -1))))
             y[i, :, :, :] = torch.reshape(temp, (x.size(1), x.size(2),
                                                  x.size(3)))
 
@@ -87,4 +87,4 @@ class CIEXYZNet(nn.Module):
 
     @staticmethod
     def kernel(x):
-        return torch.cat((x, x * x), dim=1)
+        return torch.cat((x, x * x), dim=0)
